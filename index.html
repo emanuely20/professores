@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homenagem aos Nossos Professores 🎓🌟</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Cabeçalho */
+    header {
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #2d3436;
+      margin: 40px 0 20px;
+    }
+
+    /* Cartões Genéricos dos Professores */
+    .professores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .prof-card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+      position: relative;
+    }
+
+    .prof-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .prof-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #a29bfe;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 15px;
+    }
+
+    .prof-titulo {
+      font-size: 1.2rem;
+      color: #2d3436;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .btn-coracao {
+      background: #ff7675;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .btn-coracao:hover {
+      background: #d63031;
+    }
+
+    /* Formulário para Alunos Adicionarem Recados */
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-top: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #2d3436;
+    }
+
+    .form-group input, 
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #dfe6e9;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .form-group input:focus, 
+    .form-group textarea:focus {
+      border-color: #6c5ce7;
+    }
+
+    /* Recados Prontos (Sugestões rápidas) */
+    .recados-prontos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .chip-recado {
+      background: #e0e6ed;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .chip-recado:hover {
+      background: #a29bfe;
+      color: white;
+    }
+
+    .btn-enviar {
+      background: #00b894;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    .btn-enviar:hover {
+      background: #00896f;
+    }
+
+    /* Feed de Recados */
+    .mural-recados {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .recado-card {
+      background: #fff;
+      border-left: 5px solid #6c5ce7;
+      padding: 15px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      animation: aparecer 0.3s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .recado-autor {
+      font-weight: bold;
+      color: #2d3436;
+    }
+
+    .recado-destino {
+      font-size: 0.85rem;
+      color: #6c5ce7;
+      margin-bottom: 8px;
+    }
+
+    .recado-texto {
+      font-style: italic;
+      color: #555;
+    }
+
+    /* Rodapé */
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    /* Animação de Coração Flutuante */
+    .coracao-animado {
+      position: absolute;
+      color: #e74c3c;
+      font-size: 1.5rem;
+      animation: subir 1s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes subir {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-50px) scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Mural de Homenagens aos Professores 🎓</h1>
+    <p>Deixe seu recado de carinho e gratidão para os mestres da nossa escola!</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Seção de Cartões Neutros -->
+    <h2 class="section-title">Envie seu Carinho</h2>
+    <div class="professores-grid">
+      <div class="prof-card">
+        <div class="prof-avatar">✨</div>
+        <h3 class="prof-titulo">Inspiração</h3>
+        <button class="btn-coracao" onclick="enviarCarinho(this)">Enviar Carinho ❤️</button>
+      </div>
+
+      <div class="prof-card">
+        <div class="prof-avatar">📚</div>
+        <h3 class="prof-titulo">Dedicação</h3>
+        <button class="btn-coracao" onclick="enviarCarinho(this)">Enviar Carinho ❤️</button>
+      </div>
+
+      <div class="prof-card">
+        <div class="prof-avatar">🌟</div>
+        <h3 class="prof-titulo">Paciência</h3>
+        <button class="btn-coracao" onclick="enviarCarinho(this)">Enviar Carinho ❤️</button>
+      </div>
+
+      <div class="prof-card">
+        <div class="prof-avatar">💡</div>
+        <h3 class="prof-titulo">Sabedoria</h3>
+        <button class="btn-coracao" onclick="enviarCarinho(this)">Enviar Carinho ❤️</button>
+      </div>
+    </div>
+
+    <!-- Formulário Interativo -->
+    <div class="form-container">
+      <h2 style="margin-bottom: 15px; color: #2d3436;">✍️ Deixe seu recado</h2>
+      
+      <form id="formRecado">
+        <div class="form-group">
+          <label for="nomeAluno">Seu Nome (ou Turma):</label>
+          <input type="text" id="nomeAluno" placeholder="Ex: Lucas - 9º Ano A" required>
+        </div>
+
+        <div class="form-group">
+          <label for="profDestino">Para quem é o recado?</label>
+          <input type="text" id="profDestino" placeholder="Ex: Para todos os professores ou escreva um nome" required>
+        </div>
+
+        <!-- Recados Prontos para clique rápido -->
+        <label style="font-weight: bold; font-size: 0.9rem; color: #555;">💡 Clique em uma frase pronta ou escreva a sua:</label>
+        <div class="recados-prontos">
+          <button type="button" class="chip-recado" onclick="usarFrasePronta('Obrigado por nos inspirar todos os dias!')">"Obrigado por nos inspirar!"</button>
+          <button type="button" class="chip-recado" onclick="usarFrasePronta('Sua paciência e dedicação fazem toda a diferença na nossa vida.')">"Sua paciência faz a diferença!"</button>
+          <button type="button" class="chip-recado" onclick="usarFrasePronta('Suas aulas são incríveis e aprendemos muito com você!')">"Suas aulas são incríveis!"</button>
+        </div>
+
+        <div class="form-group">
+          <textarea id="mensagem" rows="3" placeholder="Escreva sua mensagem aqui..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar">Publicar Recado 🎉</button>
+      </form>
+    </div>
+
+    <!-- Mural com os recados publicados -->
+    <h2 class="section-title">Mural de Recados da Escola 💬</h2>
+    <div class="mural-recados" id="muralRecados">
+      
+      <!-- Recados Iniciais de Exemplo -->
+      <div class="recado-card">
+        <p class="recado-autor">Um Aluno Agradecido</p>
+        <p class="recado-destino">Para: Todos os Professores</p>
+        <p class="recado-texto">"Obrigado por nunca desistirem da gente e por acreditarem no nosso futuro!"</p>
+      </div>
+
+      <div class="recado-card">
+        <p class="recado-autor">Turma do 3º Ano</p>
+        <p class="recado-destino">Para: Nossa Equipe Pedagógica</p>
+        <p class="recado-texto">"Vocês fazem da nossa escola um lugar muito melhor. Nossa eterna gratidão!"</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Feito com ❤️ pelos alunos da escola | Homenagem aos Professores</p>
+  </footer>
+
+  <script>
+    // Função para preencher frase pronta
+    function usarFrasePronta(texto) {
+      document.getElementById('mensagem').value = texto;
+    }
+
+    // Função para enviar novo recado
+    document.getElementById('formRecado').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nome = document.getElementById('nomeAluno').value;
+      const destino = document.getElementById('profDestino').value;
+      const mensagem = document.getElementById('mensagem').value;
+
+      // Criar novo cartão de recado
+      const novoRecado = document.createElement('div');
+      novoRecado.className = 'recado-card';
+      novoRecado.innerHTML = `
+        <p class="recado-autor">${nome}</p>
+        <p class="recado-destino">Para: ${destino}</p>
+        <p class="recado-texto">"${mensagem}"</p>
+      `;
+
+      // Adicionar no início do mural
+      const mural = document.getElementById('muralRecados');
+      mural.insertBefore(novoRecado, mural.firstChild);
+
+      // Limpar formulário
+      document.getElementById('formRecado').reset();
+      alert('Seu recado foi publicado no mural com sucesso! 🎉');
+    });
+
+    // Função interativa do botão de corações
+    function enviarCarinho(botao) {
+      const coracao = document.createElement('div');
+      coracao.className = 'coracao-animado';
+      coracao.innerHTML = '❤️';
+      
+      botao.appendChild(coracao);
+
+      setTimeout(() => {
+        coracao.remove();
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
